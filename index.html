@@ -9,23 +9,22 @@
 
 <body>
 
-    <nav class="navbar">
+<nav class="navbar">
   <div class="nav-container">
 
-    <!-- Empty spacer to balance layout -->
-    <div class="nav-spacer"></div>
+    <!-- CENTER TOGGLE (MOBILE ONLY) -->
+    <div class="nav-toggle" id="navToggle">
+      ☰
+    </div>
 
-    <ul class="nav-links">
+    <!-- NAV LINKS -->
+    <ul class="nav-links" id="navLinks">
       <li><a href="#apply">Apply</a></li>
       <li><a href="#eligibility">Eligibility</a></li>
       <li><a href="#serve">Who We Serve</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#home">Home</a></li>
     </ul>
-
-    <!-- Mobile Toggle -->
-    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
 
   </div>
 </nav>
@@ -322,8 +321,34 @@
 </footer>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.addEventListener("DOMContentLoaded", () => {
+
+    /* Footer year */
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    /* Mobile nav toggle */
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when a link is clicked
+      document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+    }
+
+  });
 </script>
+
 
 </body>
 </html>

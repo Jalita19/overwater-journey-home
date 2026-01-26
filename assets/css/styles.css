@@ -70,9 +70,8 @@ ul li {
   color: #e6e6e6;
 }
 
-
 /* ================================
-   NAVBAR – TEXT ONLY
+   NAVBAR – CENTER TOGGLE
 ================================ */
 
 .navbar {
@@ -90,17 +89,20 @@ ul li {
   margin: auto;
   padding: 14px 20px;
   display: flex;
+  flex-direction: column; /* 👈 allows center toggle */
   align-items: center;
-  justify-content: center; /* 👈 centers the nav */
-  position: relative;
 }
 
-
-.nav-spacer {
-  width: 40px;
+/* TOGGLE */
+.nav-toggle {
+  display: none;
+  font-size: 1.9rem;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
-/* Right → Left menu order */
+/* NAV LINKS */
 .nav-links {
   list-style: none;
   display: flex;
@@ -132,38 +134,35 @@ ul li {
   width: 100%;
 }
 
-/* Mobile Toggle */
-.nav-toggle {
-  display: none;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
-  position: absolute;
-  right: 20px;
-}
+/* ================================
+   MOBILE BEHAVIOR
+================================ */
 
-
-/* Mobile Styles */
 @media (max-width: 768px) {
+
+  .nav-toggle {
+    display: block;        /* 👈 show toggle */
+  }
+
   .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: rgba(15,79,75,0.98);
+    display: none;         /* 👈 hidden by default */
     flex-direction: column;
+    align-items: center;
+    gap: 18px;
     width: 100%;
-    padding: 20px;
-    display: none;
+    padding: 12px 0;
   }
 
   .nav-links.active {
-    display: flex;
+    display: flex;         /* 👈 toggled open */
   }
 
-  .nav-toggle {
-    display: block;
+  .nav-links a {
+    font-size: 0.95rem;
   }
 }
+
+
 
 
 /* ================================
